@@ -1,4 +1,5 @@
 const fs = require("fs");
+const { UUID } = require("sequelize");
 const util = require("util");
 
 const uui = require('uuid/v1');
@@ -28,4 +29,23 @@ class Store {
       return parsedNote;
     })
   }
+
+  addNote(){
+    const { title, text } = note;
+    if(!title || !text){
+      throw new Error("Required fields left blank")
+    }
+
+    const newNote = { title, text, id: uui()};
+    return this.getNote().then((note) => [...note, newNote])
+    .then((updatedNote) => this.write(updatedNote))
+    .then(() => newNote)
+  }
+
+  removeNote(id) {
+    return this.getNotes().then((note) => note.filter((note) => note.id !== id))
+    .then((filterNote) => this.write(filterNote));
+  }
 }
+
+module.exports = new Store();

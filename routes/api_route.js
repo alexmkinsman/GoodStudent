@@ -1,14 +1,12 @@
 const path = require("path");
 const router = require("express").Router();
 const store = require("../db/storage");
+const { Store } = require("../db/storage");
 
 //read db.json file and return all saved notes as JSON
-router.get("/api/notes", async (req, res) => {
-  console.log('Hello');
+router.get("/notes", async (req, res) => {
   try {
-      const findAll = await Item.findAll()
-      // console.log("Test");
-      // console.log(findAll);
+      const findAll = await Store.findAll()
       res.status(200).json(findAll);
   } catch (err) {
       console.log(err)
