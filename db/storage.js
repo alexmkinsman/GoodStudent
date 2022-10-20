@@ -2,7 +2,7 @@ const fs = require("fs");
 const { UUID } = require("sequelize");
 const util = require("util");
 
-const uui = require('uuid/v1');
+const uuidv1 = require('uuid');
 
 const readFileAsync = util.promisify(fs.readFile);
 const writeFileAsync = util.promisify(fs.writeFile);
@@ -36,7 +36,7 @@ class Store {
       throw new Error("Required fields left blank")
     }
 
-    const newNote = { title, text, id: uui()};
+    const newNote = { title, text, id: uuidv1()};
     return this.getNote().then((note) => [...note, newNote])
     .then((updatedNote) => this.write(updatedNote))
     .then(() => newNote)
