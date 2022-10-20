@@ -12,9 +12,7 @@ app.use(express.static("public"));
 //I need to make an api route
 
 // I need to make an html route
-app.use("/", htmlRoute)
-
-
+app.use("/", htmlRoute);
 
 
 app.listen(PORT, () => console.log(`Listening at ${PORT}`))
