@@ -19,6 +19,7 @@
   "homepage": "https://github.com/alexmkinsman/GoodStudent#readme",
   "dependencies": {
     "express": "^4.18.2",
+    "sequelize": "^6.25.3",
     "uuid": "^9.0.0"
   }
 }
